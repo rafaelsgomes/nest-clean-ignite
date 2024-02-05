@@ -5,10 +5,10 @@ import {
   UnauthorizedException,
   UsePipes,
 } from '@nestjs/common'
-import { PrismaService } from '@//prisma/prisma.servie'
+import { PrismaService } from '@/infra/prisma/prisma.servie'
 import { compare } from 'bcryptjs'
 import { z } from 'zod'
-import { ZodValidationPipe } from '@//pipes/zodValidationPipe'
+import { ZodValidationPipe } from '../pipes/zodValidationPipe'
 import { JwtService } from '@nestjs/jwt'
 
 const authenticateBodySchema = z.object({
