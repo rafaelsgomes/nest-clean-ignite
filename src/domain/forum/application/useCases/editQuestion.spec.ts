@@ -2,9 +2,9 @@ import { EditQuestionUseCase } from './editQuestion'
 import { InMemoryQuestionsRepository } from 'test/repositories/inMemoryQuestionsRepository'
 import { makeQuestion } from 'test/factories/makeQuestion'
 import { UniqueEntityId } from '@/core/entities/UniqueEntityId'
-import { NotAllowedError } from '../../../../core/errors/errors/notAllowedError'
+import { NotAllowedError } from '@/core/errors/errors/notAllowedError'
 import { InMemoryQuestionAttachmentsRepository } from 'test/repositories/inMemoryQuestionAttachmentRepository'
-import { makeQuestionAttachment } from 'test/factories/makeQuestionAttachements'
+import { makeQuestionAttachment } from 'test/factories/makeQuestionAttachments'
 
 let repository: InMemoryQuestionsRepository
 let inMemoryQuestionAttachmentsRepository: InMemoryQuestionAttachmentsRepository
@@ -52,7 +52,7 @@ describe('Edit Question', async () => {
       attachmentsIds: ['1', '3'],
     })
 
-    if (result.isRigth()) {
+    if (result.isRight()) {
       expect(result.value.question).toMatchObject({
         title: 'Test Question',
         content: 'Test Content',

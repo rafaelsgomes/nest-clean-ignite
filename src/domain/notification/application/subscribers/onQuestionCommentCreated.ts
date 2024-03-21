@@ -1,6 +1,6 @@
 import { DomainEvents } from '@/core/events/domainEvents'
 import { EventHandler } from '@/core/events/eventHandler'
-import { QuestionCommentCreatedEvent } from '@/domain/forum/enterprise/events/questionComentCreatedEvent'
+import { QuestionCommentCreatedEvent } from '@/domain/forum/enterprise/events/questionCommentCreatedEvent'
 import { SendNotificationUseCase } from '../useCases/sendNotification'
 import { IQuestionsRepository } from '@/domain/forum/application/repositories/IQuestionsRepository'
 
@@ -29,7 +29,7 @@ export class OnQuestionCommentCreated implements EventHandler {
     if (question) {
       await this.sendNotification.execute({
         recipientId: question.authorId.toString(),
-        title: `New coment on ${question.content
+        title: `New comment on ${question.content
           .substring(0, 40)
           .concat('...')}`,
         content: questionComment.content.substring(0, 20).concat('...'),

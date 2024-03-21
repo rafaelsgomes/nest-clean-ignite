@@ -1,4 +1,4 @@
-import { FetchQuestionAnswersUseCase } from './fetchquestionAnswers'
+import { FetchQuestionAnswersUseCase } from './fetchQuestionAnswers'
 import { InMemoryAnswersRepository } from 'test/repositories/inMemoryAnswersRepository'
 import { makeAnswer } from 'test/factories/makeAnswer'
 import { Answer } from '../../enterprise/entities/answer'
@@ -52,7 +52,7 @@ describe('Fetch Question Answers', async () => {
       questionId: 'question-1',
     })
 
-    if (result.isRigth()) {
+    if (result.isRight()) {
       expect(result.value.answers).toHaveLength(3)
       expect(result.value.answers).toEqual([
         expect.objectContaining({ createdAt: new Date(2022, 0, 23) }),
@@ -74,7 +74,7 @@ describe('Fetch Question Answers', async () => {
       questionId: 'question-1',
     })
 
-    if (result.isRigth()) {
+    if (result.isRight()) {
       expect(result.value.answers).toHaveLength(2)
     }
   })

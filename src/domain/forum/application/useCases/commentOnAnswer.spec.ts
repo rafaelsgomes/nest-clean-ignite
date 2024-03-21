@@ -31,8 +31,8 @@ describe('Comment On Answer', async () => {
       content: 'New comment content',
     })
 
-    expect(result.isRigth()).toBe(true)
-    if (result.isRigth()) {
+    expect(result.isRight()).toBe(true)
+    if (result.isRight()) {
       expect(result.value.answerComment.content).toEqual('New comment content')
     }
   })

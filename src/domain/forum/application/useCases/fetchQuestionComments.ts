@@ -24,7 +24,7 @@ export class FetchQuestionCommentsUseCase {
     questionId,
   }: FetchQuestionCommentsUseCaseRequest): Promise<FetchQuestionCommentsUseCaseResponse> {
     const questionComments =
-      await this.questionCommentsRepository.findyManyByQuestionId(questionId, {
+      await this.questionCommentsRepository.findManyByQuestionId(questionId, {
         page,
       })
 

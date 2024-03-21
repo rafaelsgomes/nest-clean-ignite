@@ -25,7 +25,7 @@ describe('Create Answer', async () => {
       attachmentsIds: ['1', '2'],
     })
 
-    expect(result.isRigth()).toBe(true)
+    expect(result.isRight()).toBe(true)
     expect(result.value?.answer.id.toString()).toEqual(expect.any(String))
     expect(result.value?.answer.attachments.currentItems).toHaveLength(2)
     expect(result.value?.answer.attachments.currentItems).toEqual([

@@ -24,7 +24,7 @@ export class InMemoryAnswerCommentsRepository
     return answerComment
   }
 
-  async findyManyByAnswerId(
+  async findManyByAnswerId(
     answerId: string,
     { page }: PaginationParams,
   ): Promise<AnswerComment[]> {

@@ -25,7 +25,7 @@ describe('Read Notification', async () => {
       notificationId: notification.id.toString(),
     })
 
-    if (result.isRigth()) {
+    if (result.isRight()) {
       expect(result.value.notification.readAt).toEqual(expect.any(Date))
     }
   })

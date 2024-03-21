@@ -13,7 +13,7 @@ describe('Fetch Answer AnswerComments', async () => {
     sut = new FetchAnswerCommentsUseCase(repository)
   })
 
-  it('should be able to fetch answer answercomments', async () => {
+  it('should be able to fetch answer answerComments', async () => {
     const newAnswerComments: AnswerComment[] = []
 
     newAnswerComments.push(
@@ -54,7 +54,7 @@ describe('Fetch Answer AnswerComments', async () => {
     ])
   })
 
-  it('should be able to fetch paginated answer answercomments', async () => {
+  it('should be able to fetch paginated answer answerComments', async () => {
     for (let i = 1; i <= 22; i++) {
       await repository.create(
         makeAnswerComment({ answerId: new UniqueEntityId('answer-1') }),

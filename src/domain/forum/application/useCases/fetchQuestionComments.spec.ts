@@ -13,7 +13,7 @@ describe('Fetch Question QuestionComments', async () => {
     sut = new FetchQuestionCommentsUseCase(repository)
   })
 
-  it('should be able to fetch question questioncomments', async () => {
+  it('should be able to fetch question questionComments', async () => {
     const newQuestionComments: QuestionComment[] = []
 
     newQuestionComments.push(
@@ -54,18 +54,18 @@ describe('Fetch Question QuestionComments', async () => {
     ])
   })
 
-  it('should be able to fetch paginated question questioncomments', async () => {
+  it('should be able to fetch paginated question questionComments', async () => {
     for (let i = 1; i <= 22; i++) {
       await repository.create(
         makeQuestionComment({ questionId: new UniqueEntityId('question-1') }),
       )
     }
 
-    const reult = await sut.execute({
+    const result = await sut.execute({
       page: 2,
       questionId: 'question-1',
     })
 
-    expect(reult.value?.questionComments).toHaveLength(2)
+    expect(result.value?.questionComments).toHaveLength(2)
   })
 })

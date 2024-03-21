@@ -12,7 +12,7 @@ describe('watched list', () => {
   beforeEach(() => {
     list = new NumberWatchedList([1, 2, 3])
   })
-  it('should be able to create a watched list with inital items', () => {
+  it('should be able to create a watched list with initial items', () => {
     expect(list.currentItems).toHaveLength(3)
   })
 

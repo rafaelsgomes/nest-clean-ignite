@@ -1,6 +1,6 @@
 import { DomainEvents } from '@/core/events/domainEvents'
 import { EventHandler } from '@/core/events/eventHandler'
-import { AnswerCommentCreatedEvent } from '@/domain/forum/enterprise/events/answerComentCreatedEvent'
+import { AnswerCommentCreatedEvent } from '@/domain/forum/enterprise/events/answerCommentCreatedEvent'
 import { SendNotificationUseCase } from '../useCases/sendNotification'
 import { IAnswersRepository } from '@/domain/forum/application/repositories/IAnswersRepository'
 
@@ -29,7 +29,9 @@ export class OnAnswerCommentCreated implements EventHandler {
     if (answer) {
       await this.sendNotification.execute({
         recipientId: answer.authorId.toString(),
-        title: `New coment on ${answer.content.substring(0, 40).concat('...')}`,
+        title: `New comment on ${answer.content
+          .substring(0, 40)
+          .concat('...')}`,
         content: answerComment.content.substring(0, 20).concat('...'),
       })
     }

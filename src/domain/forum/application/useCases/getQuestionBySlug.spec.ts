@@ -29,7 +29,7 @@ describe('Get Question By Slug', async () => {
       slug: 'example-question',
     })
 
-    if (result.isRigth()) {
+    if (result.isRight()) {
       expect(result.value.question.id).toBeTruthy()
       expect(result.value.question.title).toEqual(newQuestion.title)
     }

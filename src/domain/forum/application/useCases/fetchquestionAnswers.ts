@@ -20,7 +20,7 @@ export class FetchQuestionAnswersUseCase {
     page,
     questionId,
   }: FetchQuestionAnswersUseCaseRequest): Promise<FetchQuestionAnswersUseCaseResponse> {
-    const answers = await this.answersRepository.findyManyByQuestionId(
+    const answers = await this.answersRepository.findManyByQuestionId(
       questionId,
       {
         page,

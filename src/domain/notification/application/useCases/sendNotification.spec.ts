@@ -17,7 +17,7 @@ describe('Send Notification', async () => {
       title: 'New notification title',
     })
 
-    expect(result.isRigth()).toBe(true)
+    expect(result.isRight()).toBe(true)
     expect(result.value?.notification.id.toString()).toEqual(expect.any(String))
   })
 })

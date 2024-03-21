@@ -27,7 +27,7 @@ export class InMemoryQuestionsRepository implements IQuestionsRepository {
     DomainEvents.dispatchEventsForAggregate(question.id)
   }
 
-  async findbySlug(slug: string): Promise<Question | null> {
+  async findBySlug(slug: string): Promise<Question | null> {
     const question = this.items.find((item) => item.slug.value === slug)
 
     if (!question) {

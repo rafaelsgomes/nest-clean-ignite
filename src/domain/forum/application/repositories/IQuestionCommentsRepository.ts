@@ -4,7 +4,7 @@ import { QuestionComment } from '../../enterprise/entities/questionComment'
 export interface IQuestionCommentsRepository {
   create(questionComment: QuestionComment): Promise<void>
   findById(id: string): Promise<QuestionComment | null>
-  findyManyByQuestionId(
+  findManyByQuestionId(
     questionId: string,
     params: PaginationParams,
   ): Promise<QuestionComment[]>

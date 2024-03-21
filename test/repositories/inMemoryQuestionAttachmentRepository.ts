@@ -5,7 +5,7 @@ export class InMemoryQuestionAttachmentsRepository
   implements IQuestionAttachmentsRepository
 {
   public items: QuestionAttachment[] = []
-  async findyManyByQuestionId(
+  async findManyByQuestionId(
     questionId: string,
   ): Promise<QuestionAttachment[]> {
     const questionAttachments = this.items.filter(

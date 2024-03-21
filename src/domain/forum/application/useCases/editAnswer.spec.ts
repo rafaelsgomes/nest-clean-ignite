@@ -2,8 +2,8 @@ import { EditAnswerUseCase } from './editAnswer'
 import { InMemoryAnswersRepository } from 'test/repositories/inMemoryAnswersRepository'
 import { makeAnswer } from 'test/factories/makeAnswer'
 import { UniqueEntityId } from '@/core/entities/UniqueEntityId'
-import { NotAllowedError } from '../../../../core/errors/errors/notAllowedError'
-import { makeAnswerAttachment } from 'test/factories/makeAnswerAttachements'
+import { NotAllowedError } from '@/core/errors/errors/notAllowedError'
+import { makeAnswerAttachment } from 'test/factories/makeAnswerAttachments'
 import { InMemoryAnswerAttachmentsRepository } from 'test/repositories/inMemoryAnswerAttachmentRepository'
 
 let repository: InMemoryAnswersRepository
@@ -48,7 +48,7 @@ describe('Edit Answer', async () => {
       attachmentsIds: ['1', '3'],
     })
 
-    if (result.isRigth()) {
+    if (result.isRight()) {
       expect(result.value.answer).toMatchObject({
         content: 'Test Content',
       })
