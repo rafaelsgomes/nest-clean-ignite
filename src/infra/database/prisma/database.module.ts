@@ -9,33 +9,53 @@ import { PrismaQuestionAttachmentsRepository } from './repositories/prismaQuesti
 import { IQuestionsRepository } from '@/domain/forum/application/repositories/IQuestionsRepository'
 import { IStudentsRepository } from '@/domain/forum/application/repositories/IStudentsRepository'
 import { PrismaStudentsRepository } from './repositories/prismaStudentsRepository'
+import { IAnswerAttachmentsRepository } from '@/domain/forum/application/repositories/IAnswerAttachmentsRepository'
+import { IAnswerCommentsRepository } from '@/domain/forum/application/repositories/IAnswerCommentsRepository'
+import { IAnswersRepository } from '@/domain/forum/application/repositories/IAnswersRepository'
+import { IQuestionAttachmentsRepository } from '@/domain/forum/application/repositories/IQuestionAttachmentsRepository'
+import { IQuestionCommentsRepository } from '@/domain/forum/application/repositories/IQuestionCommentsRepository'
 
 @Module({
   providers: [
     PrismaService,
-    PrismaAnswersRepository,
-    PrismaAnswerCommentsRepository,
-    PrismaAnswerAttachmentsRepository,
     {
       provide: IQuestionsRepository,
       useClass: PrismaQuestionsRepository,
     },
-    PrismaQuestionCommentsRepository,
-    PrismaQuestionAttachmentsRepository,
     {
       provide: IStudentsRepository,
       useClass: PrismaStudentsRepository,
     },
+    {
+      provide: IAnswersRepository,
+      useClass: PrismaAnswersRepository,
+    },
+    {
+      provide: IAnswerCommentsRepository,
+      useClass: PrismaAnswerCommentsRepository,
+    },
+    {
+      provide: IAnswerAttachmentsRepository,
+      useClass: PrismaAnswerAttachmentsRepository,
+    },
+    {
+      provide: IQuestionCommentsRepository,
+      useClass: PrismaQuestionCommentsRepository,
+    },
+    {
+      provide: IQuestionAttachmentsRepository,
+      useClass: PrismaQuestionAttachmentsRepository,
+    },
   ],
   exports: [
     PrismaService,
-    PrismaAnswersRepository,
-    PrismaAnswerCommentsRepository,
-    PrismaAnswerAttachmentsRepository,
     IQuestionsRepository,
-    PrismaQuestionCommentsRepository,
-    PrismaQuestionAttachmentsRepository,
     IStudentsRepository,
+    IAnswersRepository,
+    IAnswerCommentsRepository,
+    IAnswerAttachmentsRepository,
+    IQuestionCommentsRepository,
+    IQuestionAttachmentsRepository,
   ],
 })
 export class DatabaseModule {}

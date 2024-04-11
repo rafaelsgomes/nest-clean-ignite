@@ -3,31 +3,75 @@ import { IAnswersRepository } from '@/domain/forum/application/repositories/IAns
 import { Answer } from '@/domain/forum/enterprise/entities/answer'
 import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.service'
+import { PrismaAnswerMapper } from '../mappers/prismaAnswerMapper'
 
 @Injectable()
 export class PrismaAnswersRepository implements IAnswersRepository {
   constructor(private prisma: PrismaService) {}
 
-  create(answer: Answer): Promise<void> {
-    throw new Error('Method not implemented.')
+  async create(answer: Answer): Promise<void> {
+    await this.prisma.answer.create({
+      data: PrismaAnswerMapper.toDatabase(answer),
+    })
   }
 
-  save(answer: Answer): Promise<void> {
-    throw new Error('Method not implemented.')
+  async save(answer: Answer): Promise<void> {
+    await this.prisma.answer.update({
+      where: {
+        id: answer.id.toString(),
+      },
+      data: PrismaAnswerMapper.toDatabase(answer),
+    })
   }
 
-  findById(id: string): Promise<Answer | null> {
-    throw new Error('Method not implemented.')
+  async findById(id: string): Promise<Answer | null> {
+    const answer = await this.prisma.answer.findUnique({
+      where: {
+        id,
+      },
+    })
+
+    if (!answer) {
+      return null
+    }
+
+    return PrismaAnswerMapper.toDomain(answer)
   }
 
-  findManyByQuestionId(
+  async findManyRecent({ page }: PaginationParams): Promise<Answer[]> {
+    const answers = await this.prisma.answer.findMany({
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+    return answers.map(PrismaAnswerMapper.toDomain)
+  }
+
+  async findManyByQuestionId(
     questionId: string,
-    params: PaginationParams,
+    { page }: PaginationParams,
   ): Promise<Answer[]> {
-    throw new Error('Method not implemented.')
+    const answers = await this.prisma.answer.findMany({
+      where: {
+        questionId,
+      },
+      orderBy: {
+        createdAt: 'desc',
+      },
+      take: 20,
+      skip: (page - 1) * 20,
+    })
+
+    return answers.map(PrismaAnswerMapper.toDomain)
   }
 
-  delete(answer: Answer): Promise<void> {
-    throw new Error('Method not implemented.')
+  async delete(answer: Answer): Promise<void> {
+    await this.prisma.answer.delete({
+      where: {
+        id: answer.id.toString(),
+      },
+    })
   }
 }
