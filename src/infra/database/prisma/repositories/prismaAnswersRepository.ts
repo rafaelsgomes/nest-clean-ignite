@@ -5,6 +5,7 @@ import { Injectable } from '@nestjs/common'
 import { PrismaService } from '../prisma.service'
 import { PrismaAnswerMapper } from '../mappers/prismaAnswerMapper'
 import { IAnswerAttachmentsRepository } from '@/domain/forum/application/repositories/IAnswerAttachmentsRepository'
+import { DomainEvents } from '@/core/events/domainEvents'
 
 @Injectable()
 export class PrismaAnswersRepository implements IAnswersRepository {
@@ -21,6 +22,8 @@ export class PrismaAnswersRepository implements IAnswersRepository {
     await this.answerAttachmentsRepository.createMany(
       answer.attachments.getItems(),
     )
+
+    DomainEvents.dispatchEventsForAggregate(answer.id)
   }
 
   async save(answer: Answer): Promise<void> {
@@ -40,6 +43,7 @@ export class PrismaAnswersRepository implements IAnswersRepository {
         answer.attachments.getRemovedItems(),
       ),
     ])
+    DomainEvents.dispatchEventsForAggregate(answer.id)
   }
 
   async findById(id: string): Promise<Answer | null> {

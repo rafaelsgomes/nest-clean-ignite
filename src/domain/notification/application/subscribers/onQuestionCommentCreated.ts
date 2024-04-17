@@ -3,7 +3,9 @@ import { EventHandler } from '@/core/events/eventHandler'
 import { QuestionCommentCreatedEvent } from '@/domain/forum/enterprise/events/questionCommentCreatedEvent'
 import { SendNotificationUseCase } from '../useCases/sendNotification'
 import { IQuestionsRepository } from '@/domain/forum/application/repositories/IQuestionsRepository'
+import { Injectable } from '@nestjs/common'
 
+@Injectable()
 export class OnQuestionCommentCreated implements EventHandler {
   constructor(
     private questionsRepository: IQuestionsRepository,
